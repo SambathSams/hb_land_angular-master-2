@@ -1,0 +1,184 @@
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero">
+  <div class="container position-relative">
+    <div class="row gy-5" data-aos="fade-in" style="margin-top: 0;">
+      <h2 class="text-center">Land Digitization<span></span></h2>
+      <div class="col-lg-6 order-1 order-lg-2">
+        <img src="" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
+      </div>
+    </div>
+  </div>
+
+  <div class="icon-boxes position-relative">
+    <div class="container position-relative">
+      <div class="row gy-0" style="display: flex;justify-content: center;">
+
+        <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon-box">
+            <!-- <div  style="font-weight: 700;
+              font-size: 40px; color:white">60,000</div> -->
+            <div style="font-weight: 700;
+               font-size: 40px; color:white">{{ totalcountsingle ?? 0}}</div>
+            <h4 class="title" style="font-weight: 400;
+              font-size: 24px;"><a class="stretched-link">Total Lands</a></h4>
+          </div>
+        </div><!--End Icon Box -->
+
+        <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon-box">
+            <!-- <div style="font-weight: 700;
+              font-size: 40px; color:white">20,000</div> -->
+            <div style="font-weight: 700;
+              font-size: 40px; color:white">{{ userList.length ?? 0}}</div>
+            <h4 class="title" style="font-weight: 400;
+              font-size: 24px;"><a class="stretched-link">Digitized Lands</a></h4>
+          </div>
+        </div><!--End Icon Box -->
+
+        <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="icon-box">
+            <!-- <div style="font-weight: 700;
+              font-size: 40px; color:white">40,000</div> -->
+              <!--  -->
+            <div style="font-weight: 700;
+              font-size: 40px; color:white">{{(totalcountsingle ?? 0) - (userList.length ?? 0)}}</div>
+            <h4 class="title" style="font-weight: 400;
+              font-size: 24px;"><a class="stretched-link">Yet to be Digitized</a></h4>
+          </div>
+        </div><!--End Icon Box -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Hero Section -->
+
+<!-- Main Section Starts -->
+<div class="containertab">
+  <div class="row">
+    <div class="col-6">
+      <div class="row" style="justify-content:center;">
+        <div class="col-6">
+          <div class="section-b">
+            <input class="input" type="text" name="Search" placeholder="Search...">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-6">
+      <div class="row" style="justify-content:center;gap: 3rem;">
+        <div class="col-2 me-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Legal Proceedings</mat-label>
+            <mat-select [(ngModel)]="legalProceedingsFilter">
+              <mat-option value="O.S">O.S</mat-option>
+              <mat-option value="W.P">W.P</mat-option>
+              <mat-option value="W.A">W.A</mat-option>
+              <mat-option value="SLP(L.A)">SLP(L.A)</mat-option>
+              <mat-option value="LAOP">LAOP</mat-option>
+              <mat-option value="APPEAL SUIT AGAINST LAOP">APPEAL SUIT AGAINST LAOP</mat-option>
+              <mat-option value="APPEAL SUIT AGAINST OS">APPEAL SUIT AGAINST OS</mat-option>
+              <mat-option value="SLP(E. C)">SLP(E. C)</mat-option>
+              <mat-option value="CIVIL SUIT">CIVIL SUIT</mat-option>
+              <mat-option value="CRP">CRP</mat-option>
+              <mat-option value="REVIEW PETITION">REVIEW PETITION</mat-option>
+              <mat-option value="CONTEMPT PETITION">CONTEMPT PETITION</mat-option>
+              <mat-option value="E.P">E.P</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-2 me-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Land Status</mat-label>
+            <mat-select [(ngModel)]="statusFilter">
+              <mat-option value="Registering the land details in Asset Management">Registering the land details in Asset
+                Management</mat-option>
+              <mat-option value="SLP(E. C)">SLP(E. C)</mat-option>
+              <mat-option value="Handover the land for Project Management">Handover the land for Project
+                Management</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+          <!-- <div class="dropdown">
+    
+              <select class="select" [(ngModel)]="statusFilter" name="status" required>
+                <option value='' disabled>Land Status</option>
+                <option value="">All</option>
+                <option >Registering the land details in Asset Management</option>
+                <option >Handover the land for Project Management</option>
+    
+              </select>
+    
+              </div> -->
+        </div>
+
+        <div class="col-2 me-3">
+          <button mat-flat-button color="primary" type="submit" ngxExportAs="xlsx" fileName="report"
+            (click)="exportExcel()">{{'Download'}}</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div style="width: 100%;display: flex;justify-content: center;">
+  <div style="width:80%;" >
+    <table mat-table [dataSource]="userList" *ngIf="userList && userList?.length">
+
+      <ng-container matColumnDef="uniqueCode">
+        <th class="first" mat-header-cell *matHeaderCellDef>
+          <span>UNI.ID</span>
+        </th>
+        <td mat-cell *matCellDef="let request">{{request?.uniqueCode }}</td>
+      </ng-container>
+     <ng-container matColumnDef="landName">
+        <th class="first" mat-header-cell *matHeaderCellDef>
+          <span>Land Name</span>
+        </th>
+        <td mat-cell *matCellDef="let request">{{request?.landName | titlecase}}</td>
+      </ng-container>
+      <ng-container matColumnDef="cityrural">
+        <th class="first" mat-header-cell *matHeaderCellDef>
+          <span>Type of Division</span>
+        </th>
+        <td mat-cell *matCellDef="let request">{{request?.citynrural | titlecase }}</td>
+      </ng-container>
+     <ng-container matColumnDef="divisions">
+        <th class="first" mat-header-cell *matHeaderCellDef>
+          <span>Division</span>
+        </th>
+        <td mat-cell *matCellDef="let request">{{request?.division | titlecase}}</td>
+      </ng-container>
+     <ng-container matColumnDef="villages">
+        <th class="first" mat-header-cell *matHeaderCellDef>
+          <span>Village</span>
+        </th>
+        <td mat-cell *matCellDef="let request">{{request?.village | titlecase}}</td>
+      </ng-container> 
+      <ng-container matColumnDef="actions">
+        <th class="first" mat-header-cell *matHeaderCellDef>
+          <span>Action</span>
+        </th>
+        <td mat-cell *matCellDef="let request">
+            <div class="displayicon">
+              <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit" (click)="edit('edit',request.id)">edit</mat-icon>
+              <mat-icon style="font-size: 18px;cursor:pointer;color:red" matTooltip="Delete" (click)="delete(request.id)">delete</mat-icon>
+              <mat-icon style="font-size: 18px;cursor:pointer;color:peru" matTooltip="View" (click)="edit('view',request.id)">visibility</mat-icon>
+
+          </div>
+        </td>
+
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let request; columns: columnsToDisplay"></tr>
+    </table>
+  </div>
+</div>
+
+
+
+
+<!-- Main Section Ends -->

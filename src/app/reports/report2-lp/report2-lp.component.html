@@ -1,0 +1,65 @@
+
+<!-- Main Section Starts -->
+<section class="about">
+  <br>
+  <br>
+<div class="container position-relative">
+  <div class="table-responsive">
+  <div style="text-align: right;">
+      <a href="#" class="btn btn-light" (click)="downloadExcel()" >Download Report</a>
+    </div>
+<br>
+<br>
+  <table style=" font-size: 13px;" id="tableId">
+    <thead class="tblHead">
+        <tr>
+        <th>SI.No</th>
+        <th >Name of the Division/Unit</th>
+        <th >O.S</th>
+        <th >W.P</th>
+        <th >W.A</th>
+        <th >SLP(L.A)</th>
+        <th >LAOP</th>
+        <th >Appeal Suit Against LAOP</th>
+        <th >Appeal Suit Against OS</th>
+        <th >SLP(E.C)</th>
+        <th >Civil Suit</th>
+        <th >CRP</th>
+        <th >Review Petition</th>
+        <th >CONTEMPT PETITION</th>
+        <th >E.P</th>
+        <th >Total</th>
+        </tr>
+
+      </thead>
+      <tbody >
+        <tr *ngFor="let divisionData of divisionDataArray; let i = index" style="text-align:center">
+          <td> {{ i+1 }} </td>
+          <td>{{divisionData['division'] }} </td>
+          <td>{{divisionData['O.S'] || 0 }} </td>
+          <td>{{divisionData['W.P'] || 0 }} </td>
+          <td>{{divisionData['W.A'] || 0 }}</td>
+          <td>{{divisionData['SLP(L.A)'] || 0 }} </td>
+          <td>{{divisionData['LAOP'] || 0 }}</td>
+          <td>{{divisionData['APPEAL SUIT AGAINST LAOP'] || 0}} </td>
+          <td>{{divisionData['APPEAL SUIT AGAINST OS'] || 0 }}</td>
+          <td>{{divisionData['SLP(E. C)'] || 0 }}</td>
+          <td>{{divisionData['CIVIL SUIT'] || 0 }}</td>
+          <td>{{divisionData['CRP'] || 0 }}</td>
+          <td>{{divisionData['REVIEW PETITION'] || 0 }}</td>
+          <td>{{divisionData['CONTEMPT PETITION'] || 0 }}</td>
+          <td>{{divisionData['E.P'] || 0 }}</td>
+          <td>{{ (divisionData['O.S'] || 0) + (divisionData['W.P'] || 0) + (divisionData['W.A'] || 0) + (divisionData['SLP(L.A)'] || 0) + (divisionData['LAOP'] || 0) + (divisionData['APPEAL SUIT AGAINST LAOP'] || 0) + (divisionData['APPEAL SUIT AGAINST OS'] || 0) + (divisionData['SLP(E. C)'] || 0) + (divisionData['CIVIL SUIT'] || 0) + (divisionData['CRP'] || 0) + (divisionData['REVIEW PETITION'] || 0) + (divisionData['CONTEMPT PETITION'] || 0) + (divisionData['E.P'] || 0) }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+  </div>
+  </section>
+  <br>
+  <br>
+
+
+
+<!-- Main Section Ends -->

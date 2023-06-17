@@ -1,0 +1,100 @@
+<!-- <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 ">
+            <div class="wrap d-md-flex">
+                <div class="img" style="background-image: url(../../assets/img/bg-4.jpg);">
+                </div>
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="d-flex">
+                        <img src="../../assets/img/tnhb_logo.png" alt="">
+                    </div>
+
+                    <h5 style="font-weight: 400;font-size: 16px;line-height: 19px;">Employee Login</h5>
+                    <header style="font-weight: 700;font-size: 30px;line-height: 35px;">Login to your Account</header>
+
+
+                    <form class="signin-form" [formGroup]="form" autocomplete="off">
+                        <div class="form-group mb-3">
+                            <label class="label" for="name">Username</label>
+                            <input type="text" class="form-control" placeholder="Username" formControlName="username"
+                                name="username" required>
+                            <mat-error *ngIf="submitted && form.get('username')?.errors?.required">{{'Username is
+                                required'}}</mat-error>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="label" for="password">Password</label>
+                            <input type="password" class="form-control" placeholder="Password"
+                                formControlName="password_encrypted" name="password_encrypted" required>
+                            <mat-error *ngIf="submitted && form.get('password_encrypted')?.errors?.required">{{'Password
+                                is
+                                required'}}</mat-error>
+
+                        </div>
+                        <div class="form-group">
+
+
+                            <button type="submit" class="form-control btn btn-primary rounded submit px-3"
+                                (click)="checkLogin()">Login
+
+                            </button>
+                        </div>
+                        <h4 style="color:red">{{ message }}</h4>
+                    </form>
+
+                    <p class="text-center"><a [routerLink]="['/auth/otp']">Forgot Password?</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="card" >
+        <div class="row">
+                <div class="img" style="background-image: url(../../../assets/img/bg-4.jpg);">
+                </div>
+
+
+            <div class="login-wrap p-4 p-md-5" style="width: 50%;">
+                <div class="d-flex">
+                    <img class="img2" src="../../assets/img/tnhb_logo.png" alt="">
+                </div>
+
+                <h5 style="font-weight: 400;font-size: 16px;line-height: 19px;">Employee Login</h5>
+                <header style="font-weight: 700;font-size: 30px;line-height: 35px;">Login to your Account</header>
+
+
+                <form class="signin-form" [formGroup]="form" autocomplete="off">
+                    <div class="form-group mb-3">
+                        <label class="label" for="name">Username</label>
+                        <input type="text" class="form-control" placeholder="Username" formControlName="username"
+                            name="username" required  [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                        <mat-error *ngIf="submitted && form.get('username')?.errors?.required">{{'Username is
+                            required'}}</mat-error>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="label" for="password">Password</label>
+                        <input type="password" class="form-control" placeholder="Password"
+                            formControlName="password_encrypted" name="password_encrypted" required [ngClass]="{ 'is-invalid': submitted && f.password_encrypted.errors }">
+                        <mat-error *ngIf="submitted && form.get('password_encrypted')?.errors?.required">{{'Password
+                            is
+                            required'}}</mat-error>
+
+                    </div>
+                    <div class="form-group">
+
+
+                        <button type="submit" class="form-control btn btn-primary rounded submit px-3"
+                            (click)="checkLogin()">Login
+
+                        </button>
+                    </div>
+                    <h4 style="color:red">{{ message }}</h4>
+                </form>
+
+                <p class="text-center"><a [routerLink]="['/auth/otp']">Forgot Password?</a></p>
+            </div>
+        </div>
+
+    </div>
+</div>
